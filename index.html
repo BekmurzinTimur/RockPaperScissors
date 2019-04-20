@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>    
+    <script>
+        let pScore = 0;
+        let cScore = 0;
+        function computerPlay () {
+            let value = Math.floor(Math.random() * 3);
+            console.log(value);
+            switch (value){
+              case 0:
+              return "rock";
+              case 1:
+              return "paper";
+              case 2:
+              return "scissors";
+            }
+        }
+        function playRound(playerSelection, computerSelection) {
+
+            if (playerSelection == computerSelection)
+            {
+                return `Draw. ${playerSelection} vs ${computerSelection} \n Score is: ${pScore} : ${cScore}`; 
+            }
+            if (playerSelection + '-' + computerSelection == "rock-paper" || 
+                playerSelection + '-' + computerSelection == "paper-scissors" || 
+                playerSelection + '-' + computerSelection == "scissors-rock") 
+            {
+                cScore++;
+                return `You Lose! ${computerSelection} beats ${playerSelection} \n Score is: ${pScore} : ${cScore}`;
+            }
+
+            if (playerSelection + '-' + computerSelection == `rock-scissors` || 
+                playerSelection + '-' + computerSelection == `scissors-paper` || 
+                playerSelection + '-' + computerSelection == `paper-rock`) 
+            {
+                pScore++;
+                return `You Won! ${playerSelection} beats ${computerSelection} \n Score is: ${pScore} : ${cScore}`;
+            }
+
+        }
+
+        function game () {
+            for (i = 0; i < 5; i++) {
+                let playerSelection = prompt("What is your choice?")
+                console.log(playRound(playerSelection, computerPlay()))
+            }
+            if (pScore > cScore) {
+                console.log("You Won the Game");
+            } else
+            if (pScore == cScore) {
+                console.log("Draw");
+            } else console.log("You Lost the Game");
+        }
+        game();
+    </script>
+</body>
+</html>
